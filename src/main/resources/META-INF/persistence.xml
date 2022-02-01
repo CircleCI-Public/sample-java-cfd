@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<persistence>
+    <persistence-unit name="ContinuousFoodDelivery">
+        <description>This unit manages the menu and cart.
+            It does not rely on any vendor-specific features and can
+            therefore be deployed to any persistence provider.
+        </description>
+        <jta-data-source>jdbc/cfd</jta-data-source>
+        <class>com.circleci.continuousfooddelivery.jpa.CartJpa</class>
+        <class>com.circleci.continuousfooddelivery.jpa.ImageJpa</class>
+        <class>com.circleci.continuousfooddelivery.jpa.MenuItemJpa</class>
+    </persistence-unit>
+</persistence>
