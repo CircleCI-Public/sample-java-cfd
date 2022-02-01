@@ -24,6 +24,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.nio.file.Files;
 import java.util.Arrays;
 import java.util.List;
@@ -56,11 +57,10 @@ public class OpenAPI2SpringBoot implements CommandLineRunner {
     private void configure() throws IOException {
         String[] images = new String[]{"water.jpg", "wrap.jpg", "stew.jpg", "soup.jpg", "salad.jpg", "pizza.jpg"};
 
-
         for (String image : images) {
-            File file = resourceLoader.getResource("classpath:images/" + image).getFile();
+            ClassPathResource resource = new ClassPathResource("images/" + image);
 
-            imageRepo.save(new ImageJpa("image/jpg", Files.readAllBytes(file.toPath())));
+            imageRepo.save(new ImageJpa("image/jpg", resource.getInputStream().readAllBytes()));
         }
 
         menuRepo.saveAll(List.of(
