@@ -6,6 +6,8 @@ orbs:
   # so you dont have to copy and paste it everywhere.
   # See the orb documentation here: https://circleci.com/developer/orbs/orb/circleci/maven
   maven: circleci/maven@1.3
+  # See the orb documentation here: https://circleci.com/developer/orbs/orb/circleci/heroku
+  heroku: circleci/heroku@1.2
 
 executors:
   openjdk11:
@@ -18,7 +20,7 @@ executors:
           POSTGRES_DB: cfd
 
 workflows:
-  verify: # This is the name of the workflow, feel free to change it to better match your workflow.
+  build-and-deploy: # This is the name of the workflow, feel free to change it to better match your workflow.
     # Inside the workflow, you define the jobs you want to run.
     # For more details on extending your workflow, see the configuration docs: https://circleci.com/docs/2.0/configuration-reference/#workflows
     jobs:
@@ -34,3 +36,12 @@ workflows:
                 name: Wait for db
                 command: dockerize -wait tcp://localhost:5432 -timeout 1m
 
+      - heroku/deploy-via-git:
+          force: true  # this parameter instructs the push to use a force flag when pushing to the heroku remote, see: https://devcenter.heroku.com/articles/git
+          requires:
+            - build-and-test # only run deploy-via-git job if the build job has completed
+          filters:
+            branches:
+              # This sample config runs this job on any branch matching the regex below, however, it's more likely you want to only run this job on master.
+              only: /.*-heroku-deploy/  # Delete this line
+              # only: master  # Uncomment this line
