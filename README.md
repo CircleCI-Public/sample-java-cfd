@@ -8,7 +8,7 @@ This sample java spring boot app here is designed to demonstrate what a typical 
 
 You can see the CI pipelines for this application running [live on CircleCI](https://app.circleci.com/pipelines/github/CircleCI-Public/sample-java-cfd?branch=main).
 
-In this sample config, we have a single workflow `verify` which will install and cache our required python packages, and then run the `mvn verify` command. This config makes use of the [Maven orb](https://circleci.com/developer/orbs/orb/circleci/maven) and [Postgres orb](https://circleci.com/developer/orbs/orb/circleci/postgres), packages for CircleCI's config language, which makes writing our config shorter, and easier.
+In this sample config, we have a single workflow `verify` which will install and cache our required java libraries, and then run the `mvn verify` command. This config makes use of the [Maven orb](https://circleci.com/developer/orbs/orb/circleci/maven) and [Postgres orb](https://circleci.com/developer/orbs/orb/circleci/postgres), packages for CircleCI's config language, which makes writing our config shorter, and easier.
 
 ## Getting Started
 
