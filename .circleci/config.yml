@@ -11,7 +11,10 @@ executors:
   openjdk11:
     docker:
       - image: cimg/openjdk:11.0
-      - image: cimg/postgres:14.1.0
+      - image: cimg/postgres:14.1
+        auth:
+          username: mydockerhub-user
+          password: $DOCKERHUB_PASSWORD
         environment:
           POSTGRES_USER: postgres
           POSTGRES_PASSWORD: password
