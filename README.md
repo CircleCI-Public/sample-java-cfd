@@ -1,4 +1,4 @@
-# Sample Python App - Flask Server
+# Sample Java App - Spring Boot Server
 
 [![CircleCI Build Status](https://circleci.com/gh/CircleCI-Public/sample-java-cfd.svg?style=shield)](https://circleci.com/gh/CircleCI-Public/sample-java-cfd) [![Software License](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/CircleCI-Public/sample-java-cfd/main/LICENSE)
 
