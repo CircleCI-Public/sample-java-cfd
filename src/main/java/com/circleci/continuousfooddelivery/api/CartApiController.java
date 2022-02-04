@@ -19,6 +19,7 @@ import org.springframework.web.context.request.NativeWebRequest;
 import org.springframework.web.context.request.ServletWebRequest;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -78,8 +79,14 @@ public class CartApiController implements CartApi {
     public ResponseEntity<Cart> listCart(Integer limit, HttpServletRequest req) {
         CartJpa cart = getCart(req);
 
-        return ResponseEntity.ok(new Cart(cart.getItems().subList(0, limit).
-                stream().map(item -> modelMapper.map(item, MenuItem.class)).collect(Collectors.toList())));
+        List<MenuItemJpa> items = cart.getItems();
+
+        if (limit != null) {
+            items = items.subList(0, limit);
+        }
+
+        return ResponseEntity.ok(new Cart(items.stream()
+                .map(item -> modelMapper.map(item, MenuItem.class)).collect(Collectors.toList())));
     }
 
     @Override

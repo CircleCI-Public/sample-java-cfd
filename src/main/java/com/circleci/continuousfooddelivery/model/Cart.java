@@ -1,10 +1,8 @@
 package com.circleci.continuousfooddelivery.model;
 
-import com.circleci.continuousfooddelivery.jpa.MenuItemJpa;
-
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-import java.util.ArrayList;
 
 /**
  * Cart

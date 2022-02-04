@@ -74,6 +74,7 @@ public interface CartApi {
             value = "/cart/{itemId}",
             produces = {"application/json"}
     )
+    @CrossOrigin
     default ResponseEntity<Void> deleteCartItem(@Parameter(name = "itemId", description = "The menu item to delete from cart", required = true)
                                                 @PathVariable("itemId") Integer itemId,
                                                 HttpServletRequest req) {

@@ -10,7 +10,7 @@ import java.util.Set;
 public class MenuItemJpa {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "menu_item_seq")
     private int id;
 
     @Column(name = "description")
@@ -77,5 +77,13 @@ public class MenuItemJpa {
 
     public void addToCart(CartJpa cart) {
         this.carts.add(cart);
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }

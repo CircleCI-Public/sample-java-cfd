@@ -55,22 +55,24 @@ public class OpenAPI2SpringBoot implements CommandLineRunner {
     ResourceLoader resourceLoader;
 
     private void configure() throws IOException {
-        String[] images = new String[]{"water.jpg", "wrap.jpg", "stew.jpg", "soup.jpg", "salad.jpg", "pizza.jpg"};
+        if (menuRepo.count() == 0) {
+            String[] images = new String[]{"water.jpg", "wrap.jpg", "stew.jpg", "soup.jpg", "salad.jpg", "pizza.jpg"};
 
-        for (String image : images) {
-            ClassPathResource resource = new ClassPathResource("images/" + image);
+            for (String image : images) {
+                ClassPathResource resource = new ClassPathResource("images/" + image);
 
-            imageRepo.save(new ImageJpa("image/jpg", resource.getInputStream().readAllBytes()));
+                imageRepo.save(new ImageJpa("image/jpg", resource.getInputStream().readAllBytes()));
+            }
+
+            menuRepo.saveAll(List.of(
+                    new MenuItemJpa("Water", "Fresh from the tap", 1.99f, 1),
+                    new MenuItemJpa("Chicken Wrap", "Chicken Wrap - Sandwich", 14.99f, 2),
+                    new MenuItemJpa("Stew", "A slow cooked stew", 12.99f, 3),
+                    new MenuItemJpa("Tomato Soup", "It looks good in the menu picture", 4.99f, 4),
+                    new MenuItemJpa("Salad", "A green salad", 4.99f, 5),
+                    new MenuItemJpa("Pizza", "A single slice of pizza", 2.99f, 6)
+            ));
         }
-
-        menuRepo.saveAll(List.of(
-                new MenuItemJpa("Water", "Fresh from the tap", 1.99f, 1),
-                new MenuItemJpa("Chicken Wrap", "Chicken Wrap - Sandwich", 14.99f, 2),
-                new MenuItemJpa("Stew", "A slow cooked stew", 12.99f, 3),
-                new MenuItemJpa("Tomato Soup", "It looks good in the menu picture", 4.99f, 4),
-                new MenuItemJpa("Salad", "A green salad", 4.99f, 5),
-                new MenuItemJpa("Pizza", "A single slice of pizza", 2.99f, 6)
-        ));
     }
 
     public static void main(String[] args) throws Exception {

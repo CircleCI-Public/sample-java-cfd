@@ -10,7 +10,7 @@ import java.awt.*;
 public class ImageJpa {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "image_seq")
     private Integer id;
 
     @Column(name = "data")
