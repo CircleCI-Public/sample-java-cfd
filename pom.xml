@@ -15,7 +15,7 @@
     <description>ContinuousFoodDelivery</description>
     <properties>
         <java.version>11</java.version>
-        <springdoc.version>1.6.5</springdoc.version>
+        <springdoc.version>1.6.13</springdoc.version>
         <openapi.version>5.3.1</openapi.version>
         <maven.compiler.source>${java.version}</maven.compiler.source>
         <maven.compiler.target>${java.version}</maven.compiler.target>
